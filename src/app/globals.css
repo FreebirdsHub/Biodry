@@ -1,26 +1,822 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* ============================================================
+   BIODRY INDIA — PREMIUM DESIGN SYSTEM 2026
+   UK Engineering Aesthetic × Swiss Precision
+   ============================================================ */
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* ── WARM STONE SERIES (Backgrounds) ──────────────────────── */
+  --color-stone-50:   #F7F4EE;   /* Primary page background — warm parchment */
+  --color-stone-100:  #FCFBF8;   /* Surface / Card alternator — warm off-white */
+  --color-stone-200:  #ECEAE4;   /* Elevated panels */
+  --color-stone-300:  #E4E4E7;   /* Borders, dividers, rules */
+
+  /* ── INK SERIES (Typography) ───────────────────────────────── */
+  --color-ink-950:    #18181B;   /* Primary headings */
+  --color-ink-800:    #27272A;   /* Subheadings */
+  --color-ink-500:    #52525B;   /* Body copy */
+  --color-ink-400:    #71717A;   /* Captions, placeholders */
+
+  /* ── ENGINEERING BLUE (Primary Brand) ─────────────────────── */
+  --color-brand-blue:          #0F2D4A;
+  --color-brand-blue-hover:    #1A426A;
+  --color-brand-blue-deep:     #0A1D30;
+  --color-brand-blue-light:    #E2E8F0;
+  --color-brand-blue-subtle:   #F1F5F9;
+
+  /* ── SAGE / ECO GREEN (Scientific Eco) ────────────────────── */
+  --color-brand-green:         #7C8F6A;
+  --color-brand-green-hover:   #687A57;
+  --color-brand-green-deep:    #4D5C40;
+  --color-brand-green-light:   #F2F5F0;
+  --color-brand-green-subtle:  #D4DECC;
+
+  /* ── COPPER / TERRACOTTA (Premium Accent) ─────────────────── */
+  --color-copper:              #B97850;
+  --color-copper-hover:        #A36642;
+  --color-copper-deep:         #7A4B30;
+  --color-copper-light:        #F9EFE9;
+  --color-copper-subtle:       #E6CABA;
+  --color-terracotta:          #C4714A;
+  --color-terracotta-hover:    #A65A37;
+  --color-terracotta-light:    #FDF0E8;
+
+  /* ── TECHNICAL MOISTURE BLUE (Scientific Accent) ──────────── */
+  --color-moisture-blue:         #1E6FA8;
+  --color-moisture-blue-hover:   #175A8A;
+  --color-moisture-blue-deep:    #0E3D5C;
+  --color-moisture-blue-light:   #EAF4FB;
+  --color-moisture-blue-subtle:  #BEE0F5;
+  --color-moisture-cyan:         #0891B2;
+  --color-moisture-aqua:         #06B6D4;
+  --color-moisture-navy:         #0C4A6E;
+
+  /* ── AMBER (Trust / Severity Signals) ─────────────────────── */
+  --color-amber-600:    #B45309;
+  --color-amber-50:     #FFFBEB;
+
+  /* ── SIGNAL RED (Severe / Alert) ──────────────────────────── */
+  --color-red-600:      #DC2626;
+  --color-red-50:       #FEF2F2;
+
+  /* ── PLATINUM (Precision Accents) ─────────────────────────── */
+  --color-platinum:     #E5E3DF;
+  --color-graphite:     #4A4845;
+
+  /* ── PAGE DEFAULTS ─────────────────────────────────────────── */
+  --background:         #F7F4EE;   /* Base background */
+  --foreground:         #18181B;   /* Base foreground */
+
+  /* ── SEMANTIC COLOURS (Shadcn compatibility) ────────────────── */
+  --card:               #FCFBF8;
+  --card-foreground:    #18181B;
+  --popover:            #FCFBF8;
+  --popover-foreground: #18181B;
+  --primary:            #0F2D4A;
+  --primary-foreground: #F7F4EE;
+  --secondary:          #E4E4E7;
+  --secondary-foreground: #18181B;
+  --muted:              #F1F5F9;
+  --muted-foreground:   #71717A;
+  --accent:             #E4E4E7;
+  --accent-foreground:  #18181B;
+  --destructive:        #DC2626;
+  --border:             #E4E4E7;
+  --input:              #E4E4E7;
+  --ring:               #0F2D4A;
+
+  /* ── BORDER TOKENS ─────────────────────────────────────────── */
+  --border-hairline:    #E4E4E7;   /* Subtle rule lines */
+  --border-default:     #D4D4D8;   /* Card, input borders */
+  --border-medium:      #A1A1AA;   /* Focused inputs */
+  --border-strong:      #78716C;   /* Active, selected                 */
+  --border-brand:       #0F2240;   /* Brand highlight border           */
+  --border-inverse:     rgba(255,255,255,0.12); /* On dark backgrounds  */
+  --border-moisture:    rgba(30,111,168,0.25);  /* Moisture UI borders  */
+  --border-copper:      rgba(176,112,64,0.30);  /* Heritage/copper accent borders */
+
+  /* ── SHADOW TOKENS ─────────────────────────────────────────── */
+  --shadow-hairline:    0 1px 2px rgba(28,25,23,0.04);
+  --shadow-xs:          0 2px 6px rgba(28,25,23,0.06), 0 1px 2px rgba(28,25,23,0.04);
+  --shadow-sm:          0 4px 12px rgba(28,25,23,0.08), 0 2px 4px rgba(28,25,23,0.04);
+  --shadow-md:          0 8px 24px rgba(28,25,23,0.10), 0 3px 8px rgba(28,25,23,0.06);
+  --shadow-lg:          0 16px 48px rgba(28,25,23,0.12), 0 6px 16px rgba(28,25,23,0.08);
+  --shadow-brand:       0 8px 32px rgba(15,34,64,0.20), 0 2px 8px rgba(15,34,64,0.12);
+  --shadow-brand-lift:  0 16px 48px rgba(15,34,64,0.28), 0 6px 16px rgba(15,34,64,0.16);
+  --shadow-moisture:    0 4px 16px rgba(30,111,168,0.16), 0 2px 6px rgba(30,111,168,0.08);
+  --shadow-copper:      0 4px 16px rgba(176,112,64,0.20), 0 2px 6px rgba(176,112,64,0.10);
+
+  /* ── RADIUS TOKENS ─────────────────────────────────────────── */
+  --radius-xs:   2px;
+  --radius-sm:   4px;
+  --radius-md:   6px;
+  --radius-lg:   8px;
+  --radius:      0.375rem;
+
+  /* ── EASING TOKENS ─────────────────────────────────────────── */
+  --ease-smooth:   cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* ── TYPOGRAPHY TOKENS ─────────────────────────────────────── */
+  --font-display: 'Instrument Serif', Georgia, 'Times New Roman', serif;
+  --font-sans:    'Inter', 'Geist', system-ui, -apple-system, sans-serif;
+  --font-mono:    'JetBrains Mono', 'Geist Mono', 'Fira Code', monospace;
+
+  /* ── SIDEBAR (Shadcn) ──────────────────────────────────────── */
+  --sidebar:                  #F5F4F0;
+  --sidebar-foreground:       #1C1917;
+  --sidebar-primary:          #0F2240;
+  --sidebar-primary-foreground: #FAFAF8;
+  --sidebar-accent:           #ECEAE4;
+  --sidebar-accent-foreground: #1C1917;
+  --sidebar-border:           #E8E5DF;
+  --sidebar-ring:             #0F2240;
+
+  /* Legacy compatibility vars */
+  --color-text-primary:   var(--color-ink-950);
+  --color-text-secondary: var(--color-ink-500);
+  --color-surface-light:  var(--color-stone-100);
+  --color-surface-card:   var(--color-stone-200);
 }
 
+/* ============================================================
+   TAILWIND THEME EXTENSION
+   ============================================================ */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-background:  var(--background);
+  --color-foreground:  var(--foreground);
+
+  /* Stone / Warm Backgrounds */
+  --color-stone-50:    #FAFAF8;
+  --color-stone-100:   #F5F4F0;
+  --color-stone-200:   #ECEAE4;
+  --color-stone-300:   #D8D5CC;
+
+  /* Ink / Typography */
+  --color-ink-950:     #1C1917;
+  --color-ink-800:     #292524;
+  --color-ink-500:     #57534E;
+  --color-ink-400:     #78716C;
+
+  /* Engineering Blue */
+  --color-brand-blue:           #0F2240;
+  --color-brand-blue-hover:     #162D52;
+  --color-brand-blue-deep:      #0A1628;
+  --color-brand-blue-light:     #E8F1FB;
+  --color-brand-blue-subtle:    #F3F7FD;
+
+  /* Sage Green */
+  --color-brand-green:          #4A7C59;
+  --color-brand-green-hover:    #3A5E47;
+  --color-brand-green-light:    #F0F7F3;
+
+  /* Copper / Terracotta (User Addition #2) */
+  --color-copper:               #B07040;
+  --color-copper-hover:         #8F5A2F;
+  --color-copper-light:         #FBF3EC;
+  --color-copper-subtle:        #E8D0BA;
+  --color-terracotta:           #C4714A;
+  --color-terracotta-hover:     #A65A37;
+  --color-terracotta-light:     #FDF0E8;
+
+  /* Moisture Blue (User Addition #1) */
+  --color-moisture-blue:        #1E6FA8;
+  --color-moisture-blue-hover:  #175A8A;
+  --color-moisture-blue-deep:   #0E3D5C;
+  --color-moisture-blue-light:  #EAF4FB;
+  --color-moisture-blue-subtle: #BEE0F5;
+  --color-moisture-cyan:        #0891B2;
+  --color-moisture-aqua:        #06B6D4;
+  --color-moisture-navy:        #0C4A6E;
+
+  /* Platinum */
+  --color-platinum:     #E5E3DF;
+  --color-graphite:     #4A4845;
+
+  /* Semantic */
+  --color-card:         var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover:      var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary:      var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary:    var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted:        var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent:       var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive:  var(--destructive);
+  --color-border:       var(--border);
+  --color-input:        var(--input);
+  --color-ring:         var(--ring);
+
+  /* Sidebar */
+  --color-sidebar:                  var(--sidebar);
+  --color-sidebar-foreground:       var(--sidebar-foreground);
+  --color-sidebar-primary:          var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent:           var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border:           var(--sidebar-border);
+  --color-sidebar-ring:             var(--sidebar-ring);
+
+  /* Charts (warm palette) */
+  --color-chart-1:  #0F2240;
+  --color-chart-2:  #1E6FA8;
+  --color-chart-3:  #4A7C59;
+  --color-chart-4:  #B07040;
+  --color-chart-5:  #C4714A;
+
+  /* Fonts */
+  --font-display:  var(--font-display);
+  --font-sans:     var(--font-sans);
+  --font-mono:     var(--font-mono);
+
+  /* Containers */
+  --container-sm:  768px;
+  --container-md:  1024px;
+  --container-lg:  1200px;
+  --container-xl:  1440px;
+
+  /* Radius */
+  --radius-sm:  calc(var(--radius) * 0.6);
+  --radius-md:  calc(var(--radius) * 0.8);
+  --radius-lg:  var(--radius);
+  --radius-xl:  calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* ============================================================
+   DARK MODE
+   ============================================================ */
+.dark {
+  --background:   #09090B;
+  --foreground:   #FAFAF8;
+  --card:         rgba(20, 20, 25, 0.35);
+  --card-foreground: #FAFAF8;
+  --popover:      #121214;
+  --popover-foreground: #FAFAF8;
+  --primary:      #1E6FA8;
+  --primary-foreground: #FAFAF8;
+  --secondary:    #1C1C1F;
+  --secondary-foreground: #FAFAF8;
+  --muted:        #1C1C1F;
+  --muted-foreground: #A1A1AA;
+  --accent:       rgba(255, 255, 255, 0.05);
+  --accent-foreground: #FAFAF8;
+  --destructive:  #EF4444;
+  --border:       rgba(255, 255, 255, 0.08);
+  --input:        rgba(255, 255, 255, 0.04);
+  --ring:         #1E6FA8;
+  --sidebar:      #121214;
+  --sidebar-foreground: #FAFAF8;
+  --sidebar-border: rgba(255, 255, 255, 0.08);
+  --sidebar-ring: #1E6FA8;
+
+  /* Premium theme overrides */
+  --color-stone-50:     #09090B;
+  --color-stone-100:    #121214;
+  --color-stone-200:    #1C1C1F;
+  --color-stone-300:    #27272A;
+  --color-ink-950:      #FAFAF8;
+  --color-ink-800:      #E4E4E7;
+  --color-ink-500:      #A1A1AA;
+  --color-ink-400:      #71717A;
+  --color-brand-blue:   #1E6FA8;
+  --color-brand-blue-hover: #2B85C4;
+  --border-hairline:    rgba(255, 255, 255, 0.08);
+}
+
+/* Glassmorphism overrides in dark mode */
+.dark body {
+  background: linear-gradient(135deg, #09090B 0%, #151518 100%) !important;
+  background-attachment: fixed !important;
+}
+
+.dark .card-default,
+.dark .card-featured,
+.dark .card-moisture,
+.dark .card-copper,
+.dark [class*="card-"] {
+  background: rgba(255, 255, 255, 0.02) !important;
+  backdrop-filter: blur(24px) !important;
+  -webkit-backdrop-filter: blur(24px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5) !important;
+}
+
+.dark .card-default:hover,
+.dark .card-featured:hover,
+.dark .card-moisture:hover,
+.dark .card-copper:hover,
+.dark [class*="card-"]:hover {
+  background: rgba(255, 255, 255, 0.05) !important;
+  border-color: rgba(255, 255, 255, 0.12) !important;
+  box-shadow: 0 8px 32px 0 rgba(255, 255, 255, 0.05) !important;
+  transform: translateY(-2px) !important;
+}
+
+/* Linear Gradient buttons in dark mode */
+.dark .btn-primary,
+.dark button[style*="var(--color-brand-blue)"] {
+  background: linear-gradient(90deg, #1E6FA8 0%, #7C8F6A 100%) !important;
+  border: none !important;
+}
+.dark .btn-primary:hover,
+.dark button[style*="var(--color-brand-blue)"]:hover {
+  opacity: 0.95 !important;
+}
+
+/* ============================================================
+   BASE STYLES
+   ============================================================ */
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  html {
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    @apply bg-background text-foreground;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* ============================================================
+   TYPOGRAPHY UTILITIES
+   ============================================================ */
+.font-display  { font-family: var(--font-display) !important; }
+.font-sans     { font-family: var(--font-sans) !important; }
+.font-mono     { font-family: var(--font-mono) !important; }
+
+/* Section kicker label — engineering standard */
+.kicker {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-brand-green);
+}
+
+.kicker-blue {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-moisture-blue);
+}
+
+.kicker-copper {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-copper);
+}
+
+/* ============================================================
+   CARD STYLES
+   ============================================================ */
+
+/* Tier 1: Default card */
+.card-default {
+  background: #FFFFFF;
+  border: 1px solid var(--border-hairline);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-xs);
+  transition: border-color 200ms var(--ease-standard),
+              box-shadow    200ms var(--ease-standard),
+              transform     200ms var(--ease-standard);
+}
+.card-default:hover {
+  border-color: var(--border-default);
+  box-shadow: var(--shadow-sm);
+  transform: translateY(-1px);
+}
+
+/* Tier 2: Featured card */
+.card-featured {
+  background: linear-gradient(135deg, #FAFAF8 0%, #F5F4F0 100%);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  transition: border-color 250ms var(--ease-standard),
+              box-shadow    250ms var(--ease-standard),
+              transform     250ms var(--ease-standard);
+}
+.card-featured:hover {
+  border-color: var(--border-medium);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+/* Tier 3: Brand dark card */
+.card-brand {
+  background: var(--color-brand-blue);
+  border: 1px solid var(--border-inverse);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-brand);
+  color: #FAFAF8;
+  transition: background 200ms var(--ease-standard),
+              box-shadow  200ms var(--ease-standard);
+}
+.card-brand:hover {
+  background: var(--color-brand-blue-hover);
+  box-shadow: var(--shadow-brand-lift);
+}
+
+/* Moisture data card */
+.card-moisture {
+  background: linear-gradient(135deg, var(--color-moisture-blue-light) 0%, #FAFAF8 100%);
+  border: 1px solid var(--border-moisture);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-moisture);
+}
+
+/* Copper heritage card */
+.card-copper {
+  background: linear-gradient(135deg, var(--color-copper-light) 0%, #FAFAF8 100%);
+  border: 1px solid var(--border-copper);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-copper);
+}
+
+/* ============================================================
+   BUTTON STYLES
+   ============================================================ */
+
+/* Primary CTA — Engineering Blue */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--color-brand-blue);
+  color: #FAFAF8;
+  border: 1px solid transparent;
+  border-radius: var(--radius-xs);
+  padding: 14px 28px;
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  line-height: 1;
+  cursor: pointer;
+  transition: background  200ms var(--ease-standard),
+              box-shadow  200ms var(--ease-standard),
+              transform   200ms var(--ease-standard);
+}
+.btn-primary:hover {
+  background: var(--color-brand-blue-hover);
+  box-shadow: var(--shadow-brand);
+  transform: translateY(-1px);
+}
+.btn-primary:active {
+  background: var(--color-brand-blue-deep);
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+/* Secondary outline */
+.btn-outline {
+  background: transparent;
+  color: var(--color-ink-950);
+  border: 1.5px solid var(--border-default);
+  border-radius: var(--radius-xs);
+  padding: 13.5px 27.5px;
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: border-color 200ms var(--ease-standard),
+              background   200ms var(--ease-standard);
+}
+.btn-outline:hover {
+  border-color: var(--color-ink-800);
+  background: rgba(28,25,23,0.04);
+}
+
+/* Moisture Blue CTA */
+.btn-moisture {
+  background: var(--color-moisture-blue);
+  color: #FAFAF8;
+  border: 1px solid transparent;
+  border-radius: var(--radius-xs);
+  padding: 14px 28px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background  200ms var(--ease-standard),
+              box-shadow  200ms var(--ease-standard),
+              transform   200ms var(--ease-standard);
+}
+.btn-moisture:hover {
+  background: var(--color-moisture-blue-hover);
+  box-shadow: var(--shadow-moisture);
+  transform: translateY(-1px);
+}
+
+/* Copper Heritage CTA */
+.btn-copper {
+  background: var(--color-copper);
+  color: #FAFAF8;
+  border: 1px solid transparent;
+  border-radius: var(--radius-xs);
+  padding: 14px 28px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background  200ms var(--ease-standard),
+              box-shadow  200ms var(--ease-standard),
+              transform   200ms var(--ease-standard);
+}
+.btn-copper:hover {
+  background: var(--color-copper-hover);
+  box-shadow: var(--shadow-copper);
+  transform: translateY(-1px);
+}
+
+/* ============================================================
+   USER ADDITION #3: SCIENTIFIC MOISTURE VISUALIZATION SYSTEM
+   A living, visual data-driven moisture indicator system.
+   ============================================================ */
+
+/* ── Moisture Level Bar ──────────────────────────────────── */
+.moisture-bar-track {
+  height: 6px;
+  background: var(--color-stone-200);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.moisture-bar-fill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 1.2s var(--ease-smooth);
+  background: linear-gradient(
+    90deg,
+    var(--color-brand-green) 0%,       /* Dry — healthy */
+    var(--color-moisture-blue) 50%,    /* Moderate moisture */
+    var(--color-moisture-cyan) 75%,    /* High moisture */
+    var(--color-moisture-aqua) 100%    /* Saturated */
+  );
+}
+
+/* ── Moisture Reading Badge ──────────────────────────────── */
+.moisture-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+}
+
+.moisture-badge.dry {
+  background: var(--color-brand-green-light);
+  color: var(--color-brand-green-hover);
+  border: 1px solid var(--color-brand-green-subtle);
+}
+
+.moisture-badge.moderate {
+  background: var(--color-moisture-blue-light);
+  color: var(--color-moisture-blue-hover);
+  border: 1px solid var(--color-moisture-blue-subtle);
+}
+
+.moisture-badge.high {
+  background: var(--color-copper-light);
+  color: var(--color-copper-hover);
+  border: 1px solid var(--color-copper-subtle);
+}
+
+.moisture-badge.critical {
+  background: #FEF2F2;
+  color: #B91C1C;
+  border: 1px solid #FECACA;
+}
+
+/* ── Moisture Pulse Indicator (live reading animation) ───── */
+.moisture-pulse {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 10px;
+  height: 10px;
+}
+
+.moisture-pulse::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: 0.3;
+  animation: moisture-ripple 2s var(--ease-smooth) infinite;
+}
+
+.moisture-pulse::after {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes moisture-ripple {
+  0%   { transform: scale(1);   opacity: 0.4; }
+  60%  { transform: scale(2.2); opacity: 0;   }
+  100% { transform: scale(1);   opacity: 0;   }
+}
+
+/* ── Moisture Data Grid Cell ─────────────────────────────── */
+.moisture-data-cell {
+  background: var(--color-moisture-blue-light);
+  border: 1px solid var(--border-moisture);
+  border-radius: var(--radius-md);
+  padding: 16px 20px;
+  font-family: var(--font-mono);
+}
+
+.moisture-data-value {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--color-moisture-blue-deep);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.moisture-data-unit {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--color-moisture-blue);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+
+.moisture-data-label {
+  font-size: 10px;
+  color: var(--color-ink-500);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-top: 8px;
+}
+
+/* ── Capillary Rise Gradient (animated moisture column visual) */
+.capillary-column {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  background: linear-gradient(
+    to top,
+    var(--color-moisture-navy) 0%,       /* Ground — saturated */
+    var(--color-moisture-blue) 25%,      /* High moisture zone */
+    var(--color-moisture-blue-subtle) 55%,
+    var(--color-moisture-blue-light) 80%,
+    transparent 100%                      /* Dry zone — top */
+  );
+}
+
+/* ── Severity Color Mapping ──────────────────────────────── */
+.severity-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+
+.severity-low      { color: var(--color-brand-green); }
+.severity-moderate { color: var(--color-moisture-blue); }
+.severity-high     { color: var(--color-copper); }
+.severity-critical { color: var(--color-red-600); }
+
+/* ── Technical Reading Card ──────────────────────────────── */
+.reading-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 16px;
+  background: #FFFFFF;
+  border: 1px solid var(--border-hairline);
+  border-left: 3px solid var(--color-moisture-blue);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  box-shadow: var(--shadow-xs);
+}
+
+.reading-card.reading-ok     { border-left-color: var(--color-brand-green); }
+.reading-card.reading-warn   { border-left-color: var(--color-copper); }
+.reading-card.reading-alert  { border-left-color: var(--color-red-600); }
+
+/* ============================================================
+   COPPER / HERITAGE ACCENT UTILITIES (User Addition #2)
+   ============================================================ */
+.copper-accent {
+  color: var(--color-copper);
+}
+
+.copper-bg-subtle {
+  background: var(--color-copper-light);
+  border: 1px solid var(--color-copper-subtle);
+}
+
+.heritage-divider {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--color-copper-subtle) 30%,
+    var(--color-copper-subtle) 70%,
+    transparent 100%
+  );
+}
+
+/* ============================================================
+   GLOBAL UTILITY OVERRIDES
+   ============================================================ */
+
+/* Warm scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--color-stone-100); }
+::-webkit-scrollbar-thumb {
+  background: var(--color-stone-300);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-ink-400);
+}
+
+/* Premium focus ring */
+:focus-visible {
+  outline: 2px solid var(--color-brand-blue);
+  outline-offset: 3px;
+}
+
+/* Link defaults */
+a { color: inherit; text-decoration: none; }
+
+/* Selection highlight */
+::selection {
+  background: var(--color-brand-blue-light);
+  color: var(--color-brand-blue-deep);
+}
+
+/* ============================================================
+   AMBIENT GLOW ORB STYLES & ANIMATIONS
+   ============================================================ */
+@keyframes orb-float-1 {
+  0%, 100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  33% {
+    transform: translate(30px, -50px) scale(1.1);
+  }
+  66% {
+    transform: translate(-20px, 20px) scale(0.95);
+  }
+}
+
+@keyframes orb-float-2 {
+  0%, 100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  33% {
+    transform: translate(-40px, 40px) scale(0.95);
+  }
+  66% {
+    transform: translate(30px, -20px) scale(1.08);
+  }
+}
+
+.bg-glow-orb-1 {
+  animation: orb-float-1 25s ease-in-out infinite;
+}
+
+.bg-glow-orb-2 {
+  animation: orb-float-2 30s ease-in-out infinite;
 }
